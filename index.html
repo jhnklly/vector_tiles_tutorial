@@ -19,23 +19,31 @@
 
 <!-- Code syntax highlighting -->
 <link rel="stylesheet" href="lib/css/solarized_light.css">
+<!-- Table of Contents -->
+<link rel="stylesheet" href="plugin/presentable/presentable.min.css">
     
 <style>
       body, html, #myMap {
         height: 100%;
         width: 100%;
         margin: 0;
-        border: 1px dotted green;
       } 
     
+/*
     #myMap {
         height: 500px;
     }
+*/
     
     /* jmk overrides */
 
     section.liveCoding {
         height: 100%;    
+    }
+    
+    .reveal .maxwidth-narrow {
+        max-width: 800px;
+        margin: 0 auto;
     }
     
     .reveal pre {
@@ -54,6 +62,12 @@
         max-height: 100%;
         box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
     }
+  
+    #presentable-icon { 
+        z-index: 999;
+        height: 20px;
+    }
+    
 </style>
 
 <!-- Printing and PDF exports -->
@@ -75,42 +89,98 @@
 <!-- Any section element inside of this container is displayed as a slide -->
 <div class="slides">
 <section>
-    <h1>Let's Make a Map</h1>
-    <p>with</p>
-    <h1>Vector Tiles</h1>
-    <h3></h3>
-    <p>
-        <small>
-            John Kelly for Maptime San Francisco
-            <br>
-            <br><a href="http://twitter.com/MaptimeSF" target="_blank">@MaptimeSF</a>
-            <br><a href="http://twitter.com/jhnklly" target="_blank">@jhnklly</a>
-            <br><a href="http://twitter.com/mapsense" target="_blank">@mapsense</a>
-        </small>
-    </p>
+    <section>
+        <h1>Let's Make a Map</h1>
+        <p>with</p>
+        <h1>Vector Tiles</h1>
+        <h3></h3>
+        <p>
+            <small>
+                John Kelly for Maptime San Francisco
+                <br>
+                <br><a href="http://twitter.com/MaptimeSF" target="_blank">@MaptimeSF</a>
+                <br><a href="http://twitter.com/jhnklly" target="_blank">@jhnklly</a>
+                <br><a href="http://twitter.com/mapsense" target="_blank">@mapsense</a>
+            </small>
+        </p>
+    </section>
+    <section>
+        <h2>Table of Contents</h2>
+        <nav id="presentable-toc" class="revealjs"></nav>
+    </section>
 </section>
 
 <section>
-    <p>Follow along!</p>
+    <h3>Follow along</h3>
     <p><a href="https://jhnklly.github.io/vector_tiles_tutorial" target="_blank">https://jhnklly.github.io/vector_tiles_tutorial</a></p>
     <p>Or get the code for examples:</p>
     <p><a href="https://github.com/jhnklly/vector_tiles_tutorial" target="_blank">https://github.com/jhnklly/vector_tiles_tutorial</a></p>
 </section>
 
 <section>
-    <h2>What is Mapsense?</h2>
+    <h2>What are vector tiles?</h2>
     <iframe></iframe>
 </section>
 
 <section>
-    <h2>Step 5: All Done</h2>
+    <h2>What is <a target="_blank" href="http://www.mapsense.co">Mapsense?</a></h2>
+
+    <div class="maxwidth-narrow">
+        <h3><a href="http://www.mapsense.co/enterprise">A High-Speed Mapping Engine</a></h3>
+        <ul>
+            <li>
+                <p>Ingest&nbsp;and index&nbsp;up to TB of&nbsp;data</p>
+            </li>
+            <li>
+                <p>Lightning-fast search &amp; filtering</p>
+            </li>
+            <li>
+                <p>Smart Density-Sampling for amazing&nbsp;legibility and performance</p>
+            </li>
+            <li>
+                <p>On-Prem and in-cloud support</p>
+            </li>
+        </ul>
+    </div>
+
+</section>
+
+<section>
+    <h3><a href="https://developer.mapsense.co/">Developer Tools</a></h3>
+    <div class="maxwidth-narrow">
+        <h3>Mapsense.js</h3>
+        <ul>
+            <li>
+                <p>Free access to our open-source Mapsense.js library.&nbsp;</p>
+            </li>
+            <li>
+                <p>Unlimited basemap styles and possibilities.&nbsp;</p>
+            </li>
+            <li>
+                <p>Based on <a target="_blank" href="http://www.polymaps.org">polymaps.js</a> and <a target="_blank" href="http://www.d3s.org">D3.js</a></p>
+            </li>            
+        </ul>
+        <h3 class="text-align-center">Mapsense Data</h3>
+        <ul>
+            <li>
+                <p>Query, extract, and mashup rich public data, such as OpenStreetMap and US Demographics</p>
+            </li>
+            <li>
+                <p>Publish open&nbsp;data to the world</p>
+            </li>
+        </ul>
+    </div>
     <iframe></iframe>
 </section>
 
 <section>
-    <h2>1. Start with boilerplate + libraries</h2>
+    <h2>Quick Demo</h2>
+    <img src="img/InteractiveVectors.gif">
+</section>
 
-    <p>Lay down some boilerplate HTML and load the libraries.</p>
+<section>
+    <h2>1. HTML boilerplate + libraries</h2>
+
     <pre><code>&lt;!doctype html&gt;
 &lt;html&gt;
     &lt;head&gt;
@@ -130,7 +200,7 @@
 </section>
 
 <section>
-    <h2>Step 2: Add a Mapsense basemap</h2>
+    <h2>2. Add a Mapsense basemap</h2>
 
     <pre><code>
 d3.select("body").append("div").attr("id","myMap").attr("style","height: 100%;");
@@ -139,20 +209,49 @@ var map = mapsense.map("#myMap")
     .add(mapsense.basemap().apiKey("key-2d5eacd8b924489c8ed5e8418bd883bc"));
     </code></pre>
 
-    <p>(You can get an API key at <a target="_blank" href="https://developer.mapsense.co/account/#signUp">developer.mapsense.co</a>.)</p>
-
+    <p>(You can get an API key at <a target="_blank" href="https://developer.mapsense.co/account/#signUp">developer.mapsense.co</a>)</p>
 
 </section>
 
 <section>
+    <h2>3. No Step 3</h2>
+    <iframe></iframe>
+</section>
 
+<section>
+    <h2>Diving Deeper</h2>
+    <p><a target="_blank" src="https://developer.mapsense.co/examples/">developer.mapsense.co/examples/</a></p>
+    <section>
+        <h3><a target="_blank" src="http://bl.ocks.org/mapsense-examples/58521fb48c68027c7b96">Style It</a></h3>
+        <p><a target="_blank" src="http://styler.mapsense.co/">style.mapsense.co</a></p>
+    </section>
+    <section>
+        <h3><a target="_blank" src="http://bl.ocks.org/mapsense-examples/e50c245eea328baca1c9">Put your own geojson on the map</a></h3>
+    </section>
+    <section>
+        <h3><a target="_blank" src="http://bl.ocks.org/mapsense-examples/00ee03b071e938ce6cc0">Color by Data</a></h3>
+        <p>
+            <a target="_blank" src="http://uxblog.idvsolutions.com/2011/10/telling-truth.html/">Telling the Truth (IDV Solutions)</a>
+            <a target="_blank" src="http://indiemapper.com/app/learnmore.php?l=choropleth">indiemapper</a>
+            <a target="_blank" src="http">link</a>
+        </p>
+    </section>
 </section>
 
 </div>
 </div>
 
+<aside id="presentable-icon" class="reveal">
+    <a title="Table of Contents" href="#/0/1">
+        <smaller>.</smaller>
+    </a>
+</aside>
+    
 <script src="lib/js/head.min.js"></script>
 <script src="js/reveal.js"></script>
+<!--
+<script src="plugin/presentable/presentable.min.js"></script>
+-->
 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="http://d3js.org/topojson.v1.min.js" charset="utf-8"></script>
@@ -168,9 +267,11 @@ controls: true,
 slideNumber: true,
 progress: true,
 history: true,
-center: false,
-width: 960,
-height: 700,
+center: true,
+//width: 960,
+//height: 700,
+width: '100%',
+height: '100%',
 margin: 0.01,
 
 transition: 'fade', // none/fade/slide/convex/concave/zoom
@@ -184,8 +285,10 @@ dependencies: [
     { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
     { src: 'plugin/zoom-js/zoom.js', async: true },
     { src: 'plugin/notes/notes.js', async: true },
+    { src: 'plugin/presentable/presentable.min.js', callback: function() { presentable.toc({framework: "revealjs"}); } }
 ]
 });
+
 
 </script>
 

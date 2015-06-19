@@ -45,11 +45,12 @@ body {
   color: #586e75;
   font-family: Quicksand, 'League Gothic', sans-serif;
   font-weight: normal;
-  line-height: 1.2;
+  line-height: 1.0;
   letter-spacing: -0.08em;
   /*
   text-transform: uppercase;
-  */text-shadow: none;
+  */
+  text-shadow: none;
   word-wrap: break-word; }
 
 .reveal h1 {
@@ -190,6 +191,12 @@ body {
   vertical-align: top; }
 
 .reveal small * {
+  vertical-align: top; }
+
+.reveal smaller {
+  display: inline-block;
+  font-size: 0.4em;
+  line-height: 1.0em;
   vertical-align: top; }
 
 /*********************************************
