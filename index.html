@@ -4,10 +4,10 @@
 <head>
 <meta charset="utf-8">
 
-<title>Let's make a web map, with Mapsense.js</title>
+<title>Let's make a map with vector tiles</title>
 
-<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-<meta name="author" content="Hakim El Hattab">
+<meta name="description" content="Vector tiles with Mapsense.js">
+<meta name="author" content="John Kelly">
 
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -53,22 +53,6 @@
         color: #777;
         max-height: 100%;
         box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
-        /*
-        position: relative;
-        width: 100vw;
-        left: calc(-30vw + 50%);
-        box-sizing: border-box;
-
-        width: 80vw;
-        margin: 0 auto;
-        
-        position: absolute;
-        left: 10px; right: 10px;
-        box-shadow: none;
-        max-height: 400px;
-        background: #3F3F3F;
-        color: #DCDCDC;
-        */
     }
 </style>
 
@@ -91,21 +75,31 @@
 <!-- Any section element inside of this container is displayed as a slide -->
 <div class="slides">
 <section>
-    <h1>Vector Tiles</h1>
+    <h1>Let's Make a Map</h1>
     <p>with</p>
-    <h1>Mapsense.js</h1>
+    <h1>Vector Tiles</h1>
     <h3></h3>
     <p>
-        <small>John Kelly for Maptime San Francisco</small><br>
-        <small><a href="http://twitter.com/MaptimeSF" target="_blank">@MaptimeSF</a> | <a href="http://twitter.com/jhnklly" target="_blank">@jhnklly</a></small>
+        <small>
+            John Kelly for Maptime San Francisco
+            <br>
+            <br><a href="http://twitter.com/MaptimeSF" target="_blank">@MaptimeSF</a>
+            <br><a href="http://twitter.com/jhnklly" target="_blank">@jhnklly</a>
+            <br><a href="http://twitter.com/mapsense" target="_blank">@mapsense</a>
+        </small>
     </p>
 </section>
 
 <section>
     <p>Follow along!</p>
-    <p><a href="http://--.github.io/d3-maptime" target="_blank">--.github.io/d3-maptime</a></p>
+    <p><a href="https://jhnklly.github.io/vector_tiles_tutorial" target="_blank">https://jhnklly.github.io/vector_tiles_tutorial</a></p>
     <p>Or get the code for examples:</p>
-    <p><a href="http://github.com/--/d3-maptime" target="_blank">github.com/--/d3-maptime</a></p>
+    <p><a href="https://github.com/jhnklly/vector_tiles_tutorial" target="_blank">https://github.com/jhnklly/vector_tiles_tutorial</a></p>
+</section>
+
+<section>
+    <h2>What is Mapsense?</h2>
+    <iframe></iframe>
 </section>
 
 <section>
@@ -114,7 +108,7 @@
 </section>
 
 <section>
-    <h2>Step 1: Start with boilerplate + libraries</h2>
+    <h2>1. Start with boilerplate + libraries</h2>
 
     <p>Lay down some boilerplate HTML and load the libraries.</p>
     <pre><code>&lt;!doctype html&gt;
@@ -123,8 +117,7 @@
         <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
         <script src="http://d3js.org/topojson.v1.min.js" charset="utf-8"></script>
         <script src="https://developer.mapsense.co/mapsense.js" charset="utf-8"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
+        
         <link  type="text/css"  href="https://developer.mapsense.co/mapsense.css" rel="stylesheet"/>
     &lt;/head&gt;
     &lt;body&gt;
@@ -146,59 +139,12 @@ var map = mapsense.map("#myMap")
     .add(mapsense.basemap().apiKey("key-2d5eacd8b924489c8ed5e8418bd883bc"));
     </code></pre>
 
-    <p>Btw: you can get an API key at <a target="_blank" href="https://developer.mapsense.co/account/#signUp">developer.mapsense.co.</a></p>
+    <p>(You can get an API key at <a target="_blank" href="https://developer.mapsense.co/account/#signUp">developer.mapsense.co</a>.)</p>
 
 
 </section>
 
 <section>
-<div class="livecode stretch">
-<pre><code class="javascript">(function(){
-var the_key = "key-2d5eacd8b924489c8ed5e8418bd883bc";
-var map = mapsense.map("#myMap"); 
-map.zoom(8).center({lon: -122.3, lat: 37.5});
-
-layer_url = "https://{S}-api.mapsense.co/universes/mapsense.demographics/{Z}/{X}/{Y}.topojson?api-key=" + the_key;
-layer_url += "&select=layer,fips_code";
-layer_url += "&where=layer=='state'";
-//layer_url += "&ringSpan=10&lineSpan=10&s=10"; 
-
-layer = mapsense.topoJson()
-    .url(mapsense.url(layer_url).hosts(['a', 'b', 'c', 'd']))
-    .clip(true)
-    ;
-
-map.add(layer);
-// webkit bug: d3.selectAll('clipPath').attr('id','clippr');
-d3.selectAll('#org\\.polymaps\\.1').attr('id','clippr');
-//d3.selectAll('[clip-path="url(#org.polymaps.1)"]').attr('clip-path','url(http://localhost/htdocs_link/maptime/slide_decks/slides_intro_mapsense/#/5/clippr)');
-d3.selectAll('[clip-path="url(#org.polymaps.1)"]').attr('clip-path','url(#clippr)');
-
-})();</code></pre>
-
-<pre><code class="html">
-&lt;html&gt;
-&lt;head&gt;
-&lt;title&gt;Demo&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="http://d3js.org/topojson.v1.min.js" charset="utf-8"></script>
-<script src="https://developer.mapsense.co/mapsense.js" charset="utf-8"></script>
-<link  type="text/css"  href="https://developer.mapsense.co/mapsense.css" rel="stylesheet"/>
-    
-&lt;div id="myMap"&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-<pre><code class="css">
-    #myMap { height: 100%; overflow: hidden; }
-    path { fill: none; stroke-width: 1; stroke: pink; }
-</code></pre>
-        
-</div>
 
 </section>
 
