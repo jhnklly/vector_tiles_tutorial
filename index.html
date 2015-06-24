@@ -21,14 +21,14 @@
 <link rel="stylesheet" href="lib/css/solarized_light.css">
 <!-- Table of Contents -->
 <link rel="stylesheet" href="plugin/presentable/presentable.min.css">
-    
+
 <style>
       body, html, #myMap {
         height: 100%;
         width: 100%;
         margin: 0;
-      } 
-  
+      }
+
       iframe {
         border: 0px;
         width: 100%;
@@ -38,45 +38,80 @@
         overflow: scroll;
         */
       }
+
+    img.plain {
+        border: 0 !important;
+        box-shadow: 0 !important;
+        background: transparent !important;
+    }
+    .logo { background: rgb(23,57,103); padding: 20px; display: inline-block; }
+
+    .left-justify {
+        text-align: left;
+    }
+
+    .right-justify {
+        /*
+        float: left;
+        display: block;
+        position: relative;
+        right: 0;
+        */
+        text-align: right;
+    }
+
 /*
+    a { border-bottom: 1px dotted #268bd2 }
+    a:hover { border-bottom: 1px dotted ##78bae6 }
+
     #myMap {
         height: 500px;
     }
 */
-    
+
     /* jmk overrides */
 
     section.liveCoding {
-        height: 100%;    
+        height: 100%;
     }
-    
+
     .reveal .maxwidth-narrow {
         max-width: 800px;
         margin: 0 auto;
     }
-    
+
     .reveal pre {
         box-shadow: none;
         margin: 0 auto;
         width: 100%;
     }
-    
+
     .reveal pre code {
         display: block;
         padding: 0px;
         overflow: auto;
         word-wrap: normal;
+        font-size: 30px;
+        line-height: 30px;
         background: #f8f8f8;
         color: #777;
         max-height: 100%;
         box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
     }
-  
-    #presentable-icon { 
+
+    .reveal blockquote {
+        border-left: 4px solid #ddd;
+        padding-left: 40px;
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0);
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    #presentable-icon {
         z-index: 999;
         height: 20px;
     }
-    
+
 </style>
 
 <!-- Printing and PDF exports -->
@@ -128,18 +163,52 @@
 
 <section>
     <h2>What are vector tiles?</h2>
+</section>
+
+<section>
+    <h2>Vector-y!</h2>
+    <ul>
+        <li>Dynamic styling</li>
+        <li>Interaction</li>
+        <li>Animation</li>
+    </ul>
     <p>
-        <a href="https://en.wikipedia.org/wiki/Vector_tiles" target="_blank">https://en.wikipedia.org/wiki/Vector_tiles</a>
-        <br><a href="http://mike.teczno.com/img/Geomeetup-slides-2013-04.pdf" target="_blank">Michal Migurski, Geomeetup 2013</a>
-        <br><a href="http" target="_blank">link</a>
-        <br><a href="http" target="_blank">link</a>
-        <br><a href="http" target="_blank">link</a>
-        <br><a href="http" target="_blank">link</a>
+        <img src="img/InteractiveVectors.gif">
     </p>
 </section>
 
 <section>
-    <h2>What is <a target="_blank" href="http://www.mapsense.co">Mapsense?</a></h2>
+    <h2>Tile-y!</h2>
+    <ul>
+        <li></li>
+    </ul>
+</section>
+
+<section>
+    <h2>Vector Tiles cont.</h2>
+
+    <p>
+        <blockquote cite="https://en.wikipedia.org/wiki/Vector_tiles">
+            <div class="left-justify">&ldquo;&hellip; geographic data packaged into pre-defined roughly-square shaped "tiles".&rdquo;</div>
+            <div class="right-justify">&mdash;<a href="https://en.wikipedia.org/wiki/Vector_tiles" target="_blank">Wikipedia</a></div>
+        </blockquote>
+
+    </p>
+    <p>
+        <ul>
+            <li>Thanks Mike! <a href="http://mike.teczno.com/img/Geomeetup-slides-2013-04.pdf" target="_blank">Michal Migurski, SF Geomeetup 2013</a></li>
+            <li> <a href="http://wiki.openstreetmap.org/wiki/Vector_tiles" target="_blank">http://wiki.openstreetmap.org/wiki/Vector_tiles</a></li>
+            <li><a href="https://github.com/mapbox/vector-tile-spec" target="_blank">https://github.com/mapbox/vector-tile-spec</a></li>
+            <li><a href="https://github.com/mapbox/mapnik-vector-tile" target="_blank">https://github.com/mapbox/mapnik-vector-tile</a></li>
+        </ul>
+    </p>
+
+</section>
+
+<section>
+    <h2>What is Mapsense?</h2>
+
+        <a target="_blank" href="http://www.mapsense.co"><div class="logo"><img class="plain" src="img/mapsense.png"></div></a>?</h2>
 
     <div class="maxwidth-narrow">
         <h3><a href="http://www.mapsense.co/enterprise">A High-Speed Mapping Engine</a></h3>
@@ -174,7 +243,7 @@
             </li>
             <li>
                 <p>Based on <a target="_blank" href="http://www.polymaps.org">polymaps.js</a> and <a target="_blank" href="http://www.d3s.org">D3.js</a></p>
-            </li>            
+            </li>
         </ul>
         <h3 class="text-align-center">Mapsense Data</h3>
         <ul>
@@ -190,11 +259,6 @@
 </section>
 
 <section>
-    <h2>Quick Demo</h2>
-    <img src="img/InteractiveVectors.gif">
-</section>
-
-<section>
     <h2>1. HTML boilerplate + libraries</h2>
 
     <pre><code>&lt;!doctype html&gt;
@@ -203,7 +267,7 @@
         <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
         <script src="http://d3js.org/topojson.v1.min.js" charset="utf-8"></script>
         <script src="https://developer.mapsense.co/mapsense.js" charset="utf-8"></script>
-        
+
         <link  type="text/css"  href="https://developer.mapsense.co/mapsense.css" rel="stylesheet"/>
     &lt;/head&gt;
     &lt;body&gt;
@@ -215,18 +279,23 @@
     </code></pre>
 </section>
 
+
 <section>
     <h2>2. Add a Mapsense basemap</h2>
+    <pre><code contenteditable spellcheck="false">
+d3.select("body").append("div")
+    .attr("id","myMap")
+    .attr("style","height: 100%;");
 
-    <pre><code>
-d3.select("body").append("div").attr("id","myMap").attr("style","height: 100%;");
+var myKey = "";
 
 var map = mapsense.map("#myMap")
-    .add(mapsense.basemap().apiKey("key-2d5eacd8b924489c8ed5e8418bd883bc"));
+    .add(mapsense.basemap().apiKey(myKey));
     </code></pre>
 
-    <p>(You can get an API key at <a target="_blank" href="https://developer.mapsense.co/account/#signUp">developer.mapsense.co</a>)</p>
-
+    <p class="fragment">
+        Let's get keys: <a target="_blank" href="https://developer.mapsense.co/account/#signUp">developer.mapsense.co</a>!
+    </p>
 </section>
 
 <section>
@@ -234,6 +303,12 @@ var map = mapsense.map("#myMap")
     <iframe src="http://bl.ocks.org/jhnklly/raw/3270644093d8fbebfcd6/#10.5/37.7745/-122.3401"></iframe>
 </section>
 
+<section>
+    <h2>End Slidetime</h2>
+    <h2>Begin Maptime!</h2>
+</section>
+
+<!--
 <section>
     <h2>Diving Deeper</h2>
     <p><a target="_blank" href="https://developer.mapsense.co/examples/">developer.mapsense.co/examples/</a></p>
@@ -249,11 +324,12 @@ var map = mapsense.map("#myMap")
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/e50c245eea328baca1c9">Put your own geojson on the map</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/e50c245eea328baca1c9"></iframe>
 </section>
+
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/raw/00ee03b071e938ce6cc0">Color by Data (Choropleth)</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/00ee03b071e938ce6cc0"></iframe>
 </section>
-    
+
 <section>
     <h3>Choropleth cartography standards, tip 1</h3>
     <p>
@@ -262,7 +338,7 @@ var map = mapsense.map("#myMap")
         <a target="_blank" href="http://uxblog.idvsolutions.com/2011/10/telling-truth.html/"><img src="img/MultipleClassificationsSkewed.jpg"></a>
     </p>
 </section>
-    
+
 <section>
     <h3>Choropleth cartography standards, tip 2</h3>
     <p>
@@ -271,13 +347,13 @@ var map = mapsense.map("#myMap")
         <br>
     </p>
 </section>
-    
-    
+
+
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/a6b44908788263ef9165">Interact with Legend &rsaquo; Interact with Map</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/a6b44908788263ef9165"></iframe>
 </section>
-    
+
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/bbeb63d06c8ed9f0ee77">Raster Too</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/bbeb63d06c8ed9f0ee77"></iframe>
@@ -298,6 +374,8 @@ var map = mapsense.map("#myMap")
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/"></iframe>
 </section>
 
+
+
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/4bb87fe335cfba4e10c2">Fast Filter OSM</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/4bb87fe335cfba4e10c2"></iframe>
@@ -312,7 +390,7 @@ var map = mapsense.map("#myMap")
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/be0ad69cbea40d842726">Leaflet tilelayer &amp; mapsense vector tiles</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/be0ad69cbea40d842726"></iframe>
 </section>
-    
+
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/f1099c642a7a1ed9e71e">Toggle Layers</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/f1099c642a7a1ed9e71e"></iframe>
@@ -327,11 +405,15 @@ var map = mapsense.map("#myMap")
     <h2></h2>
 </section>
 
+-->
+
+
+<!--
 <section>
     <h3>Here is the Gratuitous &amp; Requisite Cat GIF</h3>
     <img src="img/best_cat_gif_jump_light.gif">
 </section>
-
+ -->
 </div>
 </div>
 
@@ -340,7 +422,7 @@ var map = mapsense.map("#myMap")
         <smaller>.</smaller>
     </a>
 </aside>
-    
+
 <script src="lib/js/head.min.js"></script>
 <script src="js/reveal.js"></script>
 <!--
@@ -351,7 +433,7 @@ var map = mapsense.map("#myMap")
 <script src="http://d3js.org/topojson.v1.min.js" charset="utf-8"></script>
 <script src="https://developer.mapsense.co/mapsense.js" charset="utf-8"></script>
 <link  type="text/css"  href="https://developer.mapsense.co/mapsense.css" rel="stylesheet"/>
-    
+
 <script>
 
 // Full list of configuration options available at:
