@@ -93,6 +93,14 @@
         margin: 0 auto;
     }
 
+    .reveal ul.small li {
+        font-size: 30px;
+        font-family: sans-serif;
+        letter-spacing: 0em;
+        /*
+        */
+    }
+
     .reveal pre {
         box-shadow: none;
         margin: 0 auto;
@@ -111,6 +119,22 @@
         color: #777;
         max-height: 100%;
         box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .reveal pre code.wrap {
+        display: block;
+        padding: 0px;
+        overflow: scroll;
+        word-wrap: normal;
+        font-size: 14px;
+        letter-spacing: 0.0em;
+        line-height: 14px;
+        background: #f8f8f8;
+        color: #777;
+        max-height: 100%;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+        white-space: pre-wrap;
+        word-wrap: break-word;
     }
 
     .reveal .slide-number {
@@ -152,7 +176,7 @@
 <div class="slides">
 <section>
     <section>
-        <h1>Let's Make a Map</h1>
+        <h3>Let's Make a Map</h3>
         <p>with</p>
         <h1>Vector Tiles</h1>
         <h3></h3>
@@ -167,7 +191,7 @@
         </p>
     </section>
     <section>
-        <h2>Table of Contents</h2>
+        <h3>Table of Contents</h3>
         <nav id="presentable-toc" class="revealjs"></nav>
     </section>
 </section>
@@ -182,42 +206,62 @@
 </section>
 
 <section>
-    <h2>What are vector tiles?</h2>
+    <h3>What are vector tiles?</h3>
 </section>
 
 <section>
-    <h2>Vector-y!</h2>
+    <h3>Vector-y!</h3>
     <ul>
         <li>Dynamic styling</li>
         <li>Interaction</li>
         <li>Animation</li>
     </ul>
+</section>
+
+<section>
     <p>
         <img src="img/InteractiveVectors.gif">
     </p>
 </section>
 
 <section>
-    <h2>Tile-y!</h2>
-    <ul>
-        <li></li>
-    </ul>
+    <h3>Tile-y!</h3>
+    <p>
+        http://a.tile.openstreetmap.org/0/0/0.png
+        <br><img class="plain" src="http://a.tile.openstreetmap.org/0/0/0.png">
+    </p>
 </section>
 
 <section>
-    <h2>What We're Going to Make</h2>
+    <p>
+        http://a.tile.openstreetmap.org/18/41928/101333.png
+        <br><img class="plain" src="http://a.tile.openstreetmap.org/18/41928/101333.png">
+    </p>
+    Times 70 billion.
+
+</section>
+
+<section>
+    <h3>Under the Hood</h3>
+    <pre><code class="wrap">
+{"type":"Topology","q":[4096,4096],"transform":{"scale":[2.6822090148960476E-6,2.119827344163744E-6],"translate":[-122.43164062500001,37.779398571318765]},"srid":"4326","objects":{"land":{"type":"GeometryCollection","geometries":[{"id":0,"properties":{"minz":0},"type":"MultiPolygon","arcs":[[[1432]]]}]},"landuse":{"type":"GeometryCollection","geometries":[{"id":4705353,"properties":{"minz":13,"sub_layer":"park","leisure":"park","name":"Jefferson Square"},"type":"Polygon","arcs":[[0]]},{"id":6721233,"properties":{"minz":13,"sub_layer":"park","leisure":"pitch"},"type":"Polygon","arcs":[[1]]},{"id":7380715,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[2]]},{"id":7846397,"properties":{"name":"Cathedral of Saint Mary of the Assumption","building":"yes","minz":15,"sub_layer":"building","amenity":"place_of_worship"},"type":"Polygon","arcs":[[3,4,5,6,7]]},{"id":7915992,"properties":{"name":"Margaret S. Hayward Playground","minz":13,"sub_layer":"park","leisure":"park"},"type":"Polygon","arcs":[[8]]},{"id":8594947,"properties":{"building":"yes","minz":15,"sub_layer":"building","name":"State of California Building"},"type":"Polygon","arcs":[[9,1433,10,11,12],[13]]},{"id":8649879,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[14],[15]]},{"id":8700533,"properties":{"name":"Kintetsu Mall","building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[16,17,18]]},{"id":9037911,"properties":{"name":"War Memorial Veterans Building","building":"yes","minz":15,"sub_layer":"building","amenity":"theatre"},"type":"Polygon","arcs":[[19,1434,20]]},{"id":9054515,"properties":{"name":"Cathedral Hill Plaza","building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[21]]},{"id":9098966,"properties":{"name":"Safeway 0995","minz":15,"sub_layer":"building","building":"retail"},"type":"Polygon","arcs":[[22,1435]]},{"id":9167882,"properties":{"minz":15,"sub_layer":"building","building":"apartments"},"type":"Polygon","arcs":[[23,1436]]},{"id":9371343,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[24,1437,25]]},{"id":9820605,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[26]]},{"id":10005073,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[27,-7,28],[29],[30]]},{"id":10054102,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[31]]},{"id":10068970,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[32,33,34,35,36,37]]},{"id":10069784,"properties":{"name":"Miyako Mall","building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[38,39,40,41,42]]},{"id":10135953,"properties":{"name":"Kinokuniya Mall","building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[43,44,45,1438]]},{"id":10441598,"properties":{"name":"KRON
+    </code></pre>
+</section>
+
+<section>
+    <h3>What We're Going to Make</h3>
     <iframe src="http://bl.ocks.org/erex78/raw/14e33abbd76575c96bd0/"></iframe>
 </section>
 
 
 <section>
     <!--
-    <h2>Intentionally Blank!</h2>
+    <h3>Intentionally Blank!</h3>
     -->
 </section>
 
 <section>
-    <h2><a target="_blank" href="http://www.mapsense.co"><div class="logo"><img class="plain" src="img/mapsense.png"></div></a></h2>
+    <h3><a target="_blank" href="http://www.mapsense.co"><div class="logo"><img class="plain" src="img/mapsense.png"></div></a></h3>
 
         <img class="snapshot" src="img/TeamBikeOffsite.jpg">
         <!--
@@ -232,7 +276,7 @@
 
 <section>
     <h3>Mapsense.js</h3>
-    <p>
+    <div class="maxwidth-narrow">
         <ul>
             <li>
                 <p>Open-source mapping library: <a target="_blank" href="https://github.com/mapsense/mapsense.js">https://github.com/mapsense/mapsense.js</a></p>
@@ -244,7 +288,7 @@
                 <p>Based on <a target="_blank" href="http://www.polymaps.org">polymaps.js</a> and <a target="_blank" href="http://www.d3s.org">D3.js</a></p>
             </li>
         </ul>
-    </p>
+    </div>
 </section>
 
 <section>
@@ -265,12 +309,12 @@
 
 <section>
     <!--
-    <h2>Intentionally Blank!</h2>
+    <h3>Intentionally Blank!</h3>
     -->
 </section>
 
 <section>
-    <h2>Back to Vectiles</h2>
+    <h3>Back to Vectiles</h3>
 
     <p>
         <blockquote cite="https://en.wikipedia.org/wiki/Vector_tiles">
@@ -290,25 +334,63 @@
 </section>
 
 <section>
-    <h2>Produce Vectiles</h2>
-    <p>
-    </p>
+    <h3>Consume Vectiles</h3>
+<ul class="small">
+<li><a href="https://github.com/mapsense/mapsense.js">mapsense.js</a></li>
+<li><a href="https://github.com/SpatialServer/Leaflet.MapboxVectorTile">Leaflet.MapboxVectorTile</a></li>
+<li><a href="https://github.com/mapbox/mapbox-gl-js">Mapbox GL JS</a></li>
+<li>&hellip;</li>
+</ul>
 </section>
 
 <section>
-    <h2>Consume Vectiles</h2>
-    <p>
-    </p>
+    <h3>Produce Vectiles</h3>
+<ul class="small">
+
+<li><a href="http://www.mapsense.co/plans/">Mapsense Analyst</a></li>
+<li><a href="https://github.com/mapbox/vector-tile-js">vector-tile-js</a></li>
+<li><a href="https://github.com/mapbox/mapnik-vector-tile">mapnik-vector-tile</a></li>
+<li><a href="https://github.com/trailbehind/WhirlyGlobe/blob/feature/mapnik-vector-tiles/WhirlyGlobeSrc/WhirlyGlobe-MaplyComponent/src/MaplyMapnikVectorTiles.mm">WhirlyGlobe/Maply</a></li>
+<li><a href="https://github.com/mapzen/mapbox-vector-tile">mapbox-vector-tile</a></li>
+<li><a href="https://github.com/mapbox/tippecanoe">tippecanoe</a></li>
+<li><a href="https://github.com/mapbox/geojson-vt">geojson-vt</a></li>
+
+<li>&hellip;</li>
+
+<!--
+<li><a href="http://www.mapsense.co/plans/">Mapsense Analyst</a></li>
+<li><a href="https://github.com/mapbox/vector-tile-js">vector-tile-js</a> - Parses vector tiles with JavaScript.</li>
+<li><a href="https://github.com/mapbox/mapnik-vector-tile">mapnik-vector-tile</a> - C++ vector tile read/write implementation on top of Mapnik.</li>
+<li><a href="https://github.com/trailbehind/WhirlyGlobe/blob/feature/mapnik-vector-tiles/WhirlyGlobeSrc/WhirlyGlobe-MaplyComponent/src/MaplyMapnikVectorTiles.mm">WhirlyGlobe/Maply</a> - Objective C code that is able to read and render vector tiles(and style with mapnik xml) on iOS devices.</li>
+<li><a href="https://github.com/mapzen/mapbox-vector-tile">mapbox-vector-tile</a> is a Python package for vector tile encoding maintained by Mapzen. (It is used in Mapzen's <a href="http://mapzen.com/vector">vector tile service</a>).</li>
+<li><a href="https://github.com/mapbox/tippecanoe">tippecanoe</a> - Build vector tilesets from large collections of GeoJSON features.</li>
+<li><a href="https://github.com/mapbox/geojson-vt">geojson-vt</a> - Slice GeoJSON into vector tiles on the fly in the browser.</li>
+
+ -->
+<!--
+<li><a href="https://github.com/mapnik/node-mapnik">node-mapnik</a> - Node.js API for vector tiles which depends on <code>mapnik-vector-tile</code>
+</li>
+<li><a href="https://github.com/mapbox/tilelive-bridge">tilelive-bridge</a> - Implements <a href="https://github.com/mapbox/tilelive.js/blob/master/API.md">Tilelive API</a> for creating vector tiles from traditional Mapnik datasources in Node.js.</li>
+<li><a href="https://github.com/mapbox/tilelive-vector">tilelive-vector</a> - Implements <a href="https://github.com/mapbox/tilelive.js/blob/master/API.md">Tilelive API</a> for reading vector tiles and rendering to image tiles in Node.js.</li>
+<li><a href="https://github.com/ElectronicChartCentre/java-vector-tile">java-vector-tile</a> - A java encoder and decoder for vector tiles.</li>
+<li><a href="https://github.com/mapbox/mapbox-gl-native">Mapbox GL Native</a> - C++/OpenGL vector maps library.</li>
+<li><a href="https://developer.nutiteq.com">Nutiteq Maps SDK 3.x</a> - Mobile maps library for iOS, Android, Windows Phone and Xamarin</li>
+-->
+
+</ul>
 </section>
+<!--
+https://github.com/mapbox/vector-tile-spec/wiki/Implementations
+ -->
 
 <section>
     <!--
-    <h2>Intentionally Blank!</h2>
+    <h3>Intentionally Blank!</h3>
     -->
 </section>
 
 <section>
-    <h2>Developer Resources</h2>
+    <h3>Developer Resources</h3>
     <p>
         <a target="_blank" href="https://developer.mapsense.co/" target="_blank">https://developer.mapsense.co/</a>
         <ul>
@@ -320,23 +402,24 @@
 </section>
 
 <section>
+    <h3>Steal this code.</h3>
     <iframe src="https://developer.mapsense.co/examples/"></iframe>
 </section>
 
 
 <section>
     <!--
-    <h2>Intentionally Blank!</h2>
+    <h3>Intentionally Blank!</h3>
     -->
 </section>
 
 
 <section>
-    <h2>First Map: Hello World</h2>
+    <h3>First Map: Hello World</h3>
 </section>
 
 <section>
-    <h2>1. HTML boilerplate + libraries</h2>
+    <h3>1. HTML boilerplate + libraries</h3>
 
     <pre><code>&lt;!doctype html&gt;
 &lt;html&gt;
@@ -358,7 +441,7 @@
 
 
 <section>
-    <h2>2. Add a Mapsense basemap</h2>
+    <h3>2. Add a Mapsense basemap</h3>
     <pre><code contenteditable spellcheck="false">
 d3.select("body").append("div")
     .attr("id","myMap")
@@ -376,23 +459,23 @@ var map = mapsense.map("#myMap")
 </section>
 
 <section>
-    <h2>3. No Step 3</h2>
+    <h3>3. No Step 3</h3>
     <iframe src="http://bl.ocks.org/jhnklly/raw/3270644093d8fbebfcd6/#10.5/37.7745/-122.3401"></iframe>
 </section>
 
 <section>
-    <h2>End Slidetime</h2>
-    <h2>Begin Maptime!</h2>
+    <h3>End Slidetime</h3>
+    <h3>Begin Maptime!</h3>
 </section>
 
 <section>
-    <h2>Let's open our text editors &
- code together: <a target="_blank" href="http://www.mapsense.co/hurricanes">http://www.mapsense.co/hurricanes</a></h2>
+    <h3>Let's open our text editors &
+ code together: <a target="_blank" href="http://www.mapsense.co/hurricanes">http://www.mapsense.co/hurricanes</a></h3>
 </section>
 
 <!--
 <section>
-    <h2>Diving Deeper</h2>
+    <h3>Diving Deeper</h3>
     <p><a target="_blank" href="https://developer.mapsense.co/examples/">developer.mapsense.co/examples/</a></p>
 </section>
 
@@ -480,11 +563,11 @@ var map = mapsense.map("#myMap")
 
 
 <section>
-    <h2></h2>
+    <h3></h3>
 </section>
 
 <section>
-    <h2></h2>
+    <h3></h3>
 </section>
 
 -->
