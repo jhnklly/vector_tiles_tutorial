@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://d3js.org/topojson.v1.min.js" charset="utf-8"></script>
+    <script src="https://developer.mapsense.co/mapsense.js" charset="utf-8"></script>
+    <link type="text/css" href="https://developer.mapsense.co/mapsense.css" rel="stylesheet" />
+    <style>
+        text {
+            background-color: rgba(0, 0, 0, .5);
+            padding: 10px;
+        }
+
+        body {
+            height: 100%;
+        }
+
+        #myMap {
+            height: 100%;
+            width: 100%;
+        }
+
+        select {
+            font-size: 20px;
+            margin: 10px;
+        }
+
+        #selection {
+            font-family: Arial;
+            color: white;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 20px;
+        }
+
+        .points {
+            opacity: .7;
+            stroke-width: 2px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="myMap">
+    </div>
+
+
+        <script>
+            // mapsense developer key from https://developer.mapsense.co/account/#signUp
+            var myKey = "key-2d5eacd8b924489c8ed5e8418bd883bc";
+
+            var hurricanes = ['ALL', 'ABLE', 'BAKER', 'CHARLIE', 'DOG', 'EASY', 'FOX', 'GEORGE', 'HOW', 'ITEM', 'JIG', 'KING', 'LOVE', 'MIKE', 'ALICE', 'BARBARA', 'CAROL', 'DOLLY', 'EDNA', 'FLORENCE', 'GAIL', 'HAZEL', 'GILDA', 'BRENDA', 'CONNIE', 'DIANE', 'EDITH', 'FLORA', 'GLADYS', 'IONE', 'HILDA', 'JANET', 'KATIE', 'ANNA', 'BETSY', 'CARLA', 'DORA', 'ETHEL', 'FLOSSY', 'GRETA', 'AUDREY', 'BERTHA', 'CARRIE', 'DEBBIE', 'ESTHER', 'FRIEDA', 'ALMA', 'BECKY', 'CLEO', 'DAISY', 'ELLA', 'FIFI', 'GERDA', 'HELENE', 'ILSA', 'JANICE', 'ARLENE', 'BEULAH', 'CINDY', 'DEBRA', 'GRACIE', 'HANNAH', 'IRENE', 'JUDITH', 'ABBY', 'DONNA', 'FRANCES', 'HATTIE', 'JENNY', 'INGA', 'CELIA', 'GINNY', 'HELENA', 'ISBELL', 'ELENA', 'DOROTHY', 'FAITH', 'HALLIE', 'INEZ', 'LOIS', 'CHLOE', 'DORIA', 'FERN', 'GINGER', 'HEIDI', 'CANDY', 'BLANCHE', 'CAMILLE', 'EVE', 'FRANCELIA', 'HOLLY', 'KARA', 'LAURIE', 'MARTHA', 'FELICE', 'BETH', 'KRISTY', 'LAURA', 'ALPHA', 'AGNES', 'BETTY', 'DAWN', 'DELTA', 'ALFA', 'CHRISTINE', 'DELIA', 'ELLEN', 'FRAN', 'CARMEN', 'ELAINE', 'GERTRUDE', 'AMY', 'CAROLINE', 'DORIS', 'ELOISE', 'FAYE', 'BELLE', 'DOTTIE', 'CANDICE', 'EMMY', 'GLORIA', 'ANITA', 'BABE', 'CLARA', 'EVELYN', 'AMELIA', 'BESS', 'CORA', 'FLOSSIE', 'HOPE', 'IRMA', 'JULIET', 'KENDRA', 'ANA', 'BOB', 'CLAUDETTE', 'DAVID', 'FREDERIC', 'HENRI', 'ALLEN', 'BONNIE', 'CHARLEY', 'GEORGES', 'EARL', 'DANIELLE', 'HERMINE', 'IVAN', 'JEANNE', 'KARL', 'BRET', 'DENNIS', 'EMILY', 'FLOYD', 'GERT', 'HARVEY', 'JOSE', 'KATRINA', 'ALBERTO', 'BERYL', 'CHRIS', 'DEBBY', 'ERNESTO', 'ALICIA', 'BARRY', 'CHANTAL', 'DEAN', 'ARTHUR', 'CESAR', 'DIANA', 'EDOUARD', 'GUSTAV', 'HORTENSE', 'ISIDORE', 'JOSEPHINE', 'KLAUS', 'LILI', 'DANNY', 'FABIAN', 'ISABEL', 'JUAN', 'KATE', 'ANDREW', 'GILBERT', 'ISAAC', 'JOAN', 'KEITH', 'ALLISON', 'ERIN', 'FELIX', 'GABRIELLE', 'HUGO', 'IRIS', 'JERRY', 'KAREN', 'MARCO', 'NANA', 'ERIKA', 'GRACE', 'GORDON', 'HUMBERTO', 'LUIS', 'MARILYN', 'NOEL', 'OPAL', 'PABLO', 'ROXANNE', 'SEBASTIEN', 'TANYA', 'KYLE', 'BILL', 'ALEX', 'LISA', 'MITCH', 'NICOLE', 'LENNY', 'JOYCE', 'LESLIE', 'MICHAEL', 'NADINE', 'LORENZO', 'MICHELLE', 'OLGA', 'CRISTOBAL', 'FAY', 'HANNA', 'LARRY', 'MINDY', 'NICHOLAS', 'ODETTE', 'PETER', 'GASTON', 'MATTHEW', 'OTTO', 'FRANKLIN', 'TEN', 'LEE', 'MARIA', 'NATE', 'OPHELIA', 'PHILIPPE', 'RITA', 'NINETEEN', 'STAN', 'TAMMY', 'TWENTY-TWO', 'VINCE', 'WILMA', 'BETA', 'GAMMA', 'EPSILON', 'ZETA', 'ANDREA', 'INGRID', 'MELISSA', 'FIFTEEN', 'IKE', 'OMAR', 'SIXTEEN', 'PALOMA', 'ONE', 'AL042009', 'AL062009', 'FRED', 'EIGHT', 'IDA', 'TWO', 'COLIN', 'FIVE', 'FIONA', 'IGOR', 'JULIA', 'PAULA', 'RICHARD', 'SHARY', 'TOMAS', 'DON', 'AL082011', 'KATIA', 'RINA', 'SEAN', 'KIRK', 'OSCAR', 'PATTY', 'RAFAEL', 'SANDY', 'TONY', 'DORIAN', 'FERNAND', 'GONZALO', 'HIKI', 'KANOA', 'DELLA', 'NINA', 'DOT', 'PATSY', 'WANDA', 'ANNETTE', 'BONNY', 'CELESTE', 'ESTELLE', 'FERNANDA', 'HYACINTH', 'IVA', 'JOANNE', 'KATHLEEN', 'LIZA', 'NAOMI', 'ORLA', 'PAULINE', 'REBECCA', 'SIMONE', 'TARA', 'VALERIE', 'WILLA', 'AVA', 'BERNICE', 'CLAUDIA', 'DOREEN', 'GLENDA', 'JEN-KATH', 'IRAH', 'LILLIAN', 'MONA', 'NATALIE', 'ODESSA', 'PRUDENCE', 'ROSALYN', 'TILLIE', 'VICTORIA', 'WALLIE', 'ADELE', 'BLANCA', 'DOLORES', 'EILEEN', 'FRANCESCA', 'GRETCHEN', 'HELGA', 'KIRSTEN', 'LORRAINE', 'MAGGIE', 'AGATHA', 'BRIDGET', 'CARLOTTA', 'DENISE', 'ELEANOR', 'FRANCENE', 'GEORGETTE', 'JEWEL', 'LILY', 'SARAH', 'MONICA', 'NANETTE', 'OLIVIA', 'PRISCILLA', 'RAMONA', 'GWEN', 'MADELINE', 'HEATHER', 'JENNIFER', 'IONE 2', 'IONE 1', 'KRISTEN', 'NORMA', 'ORLENE', 'PATRICIA', 'ROSALIE', 'SELMA', 'HILARY', 'SHARON', 'JUNE', 'RUBY', 'KATHERINE', 'ALETTA', 'OLIVE', 'BUD', 'DANIEL', 'EMILIA', 'FICO', 'GILMA', 'HECTOR', 'JOHN', 'LANE', 'MIRIAM', 'NORMAN', 'PAUL', 'ROSA', 'SUSAN', 'SERGIO', 'ANDRES', 'CARLOS', 'ENRIQUE', 'FEFA', 'GUILLERMO', 'IGNACIO', 'JIMENA', 'BLAS', 'DARBY', 'FRANK', 'HOWARD', 'ISIS', 'JAVIER', 'KAY', 'LESTER', 'NEWTON', 'ADRIAN', 'BEATRIZ', 'CALVIN', 'EUGENE', 'GREG', 'IRWIN', 'JOVA', 'KNUT', 'LIDIA', 'MAX', 'OTIS', 'FABIO', 'AKONI', 'EMA', 'HANA', 'IWA', 'ADOLPH', 'COSME', 'DALILIA', 'ERICK', 'GIL', 'HENRIETTE', 'ISMAEL', 'JULIETTE', 'KIKO', 'LORENA', 'MANUEL', 'NARDA', 'OCTAVE', 'RAYMOND', 'SONIA', 'TICO', 'VELMA', 'WINNIE', 'BORIS', 'CRISTINA', 'DOUGLAS', 'ELIDA', 'FAUSTO', 'GENEVIEVE', 'HERNAN', 'ISELLE', 'JULIO', 'KELI', 'KENNA', 'LALA', 'LOWELL', 'MOKE', 'MARIE', 'NORBERT', 'ODILE', 'POLO', 'RACHEL', 'SIMON', 'KEVIN', 'LINDA', 'MARTY', 'NORA', 'OLAF', 'RICK', 'SANDRA', 'TERRY', 'VIVIAN', 'WALDO', 'NELE', 'XINA', 'PAINE', 'ROSLYN', 'OKA', 'PEKE', 'PILAR', 'RAMON', 'ULEKI', 'WILA', 'AKA', 'TRUDY', 'VANCE', 'DELORES', 'EKEKA', 'HALI', 'INIKI', 'SEYMORE', 'TINA', 'VIRGIL', 'WINIFRED', 'XAVIER', 'YOLANDA', 'ZEKE', 'KEONI', 'KENNETH', 'LI', 'ILEANA', 'MELE', 'NONA', 'DALILA', 'FELICIA', 'OLIWA', 'PAKA', 'UPANA', 'WENE', 'IVO', 'ALIKA', 'ELE', 'HUKO', 'IOKE', 'THREE', 'FOUR', 'EIGHTEEN', 'TWENTY', 'ALVIN', 'THIRTEEN', 'KIKA', 'KARINA', 'SEVENTEEN', 'LANA', 'NINE', 'MAKA', 'NEKI', 'SIX', 'ELEVEN', 'OMEKA', 'TWELVE', 'PEWA', 'UNALA'];
+
+
+            // unique colors for each storm severity
+            var colorMap = {
+                TD: 'rgb(254,232,200)',
+                TS: 'rgb(253,187,132)',
+                HU: 'rgb(227,74,51)',
+                SD: 'rgb(255,237,160)',
+                SS: 'rgb(254,178,76)',
+                EX: 'rgb(201,148,199)',
+                LO: 'rgb(210, 210, 212)',
+                WV: 'rgb(167, 167, 170)',
+                DB: 'rgb(231,225,239)'
+            };
+
+            // add the selector input to the page
+            var selection = d3.select("body")
+                .append("div")
+                .attr("id", "selection")
+
+            selection
+                .append("text")
+                .text("CHOOSE A HURRICANE:")
+
+            // append all the hurricane names
+            selection
+                .append("select")
+                .selectAll("option")
+                .data(hurricanes)
+                .enter()
+                .append("option")
+                .text(function(d) {
+                    return d;
+                })
+
+
+            // when the user changes the selection, we change the mapsense data url
+            d3.select("select")
+                .on("change", function(d) {
+                    var val = this.value
+                    if (val == 'ALL') {
+                        hurricaneLayer.url(mapsense.url(hurricaneUrl).hosts(['a', 'b', 'c', 'd']))
+                        return;
+                    }
+                    var newUrl = hurricaneUrl + "where=name=='" + val + "'";
+                    hurricaneLayer.url(mapsense.url(newUrl).hosts(['a', 'b', 'c', 'd']))
+                })
+
+
+            // initializing the map
+            var map = mapsense
+                .map("#myMap")
+                .add(mapsense
+                    .basemap()
+                    .apiKey(myKey)
+                    .style("blackprint"))
+                .zoom(3.5)
+                .center({
+                    lon: -113.921,
+                    lat: 9.315
+                })
+
+            var sizeRamp = d3.scale.linear()
+                .clamp(true)
+                .domain([0, 250])
+                .range([2, 25])
+
+            var hurricaneUrl = "https://{S}-api.mapsense.co/universes/mapsense.hurricanes/{Z}/{X}/{Y}.topojson?api-key=key-fb3a8e7a8537477cbe1fb268d7b98c77&"
+
+            var hurricaneLayer = mapsense.topoJson()
+                .url(mapsense.url(hurricaneUrl).hosts(['a', 'b', 'c', 'd']))
+                .selection(
+                    function(selection) {
+                        selection.attr("class", "points")
+                            .style("fill", function(d) {
+                                return colorMap[d.properties.system_status];
+                            })
+                            .attr("r", function(d) {
+                                return sizeRamp(d.properties.max_sustained_wind);
+                            })
+                    }
+                )
+                .clip(false)
+                .scale("fixed")
+
+            map.add(hurricaneLayer)
+        </script>
+</body>
+
+</html>
