@@ -168,6 +168,13 @@
 <!--[if lt IE 9]>
 <script src="lib/js/html5shiv.js"></script>
 <![endif]-->
+<script src='js/maptime-logo.js'></script>
+<script>
+maptimeLogo('logo', {
+    width: window.innerWidth * 2
+});
+</script>
+
 </head>
 
 <body>
@@ -176,24 +183,44 @@
 <div class="slides">
 <section>
     <section>
-        <h2>Let's Make a Map</h2>
+        <h1>Let's Make a Map</h1>
         <p>with</p>
-        <h2>Vector Tiles</h2>
-        <p>
-            <small>
-                John Kelly for Maptime San Francisco
-                <br>
-                <br><a href="http://twitter.com/MaptimeSF" target="_blank">@MaptimeSF</a>
-                <br><a href="http://twitter.com/jhnklly" target="_blank">@jhnklly</a>
-                <br><a href="http://twitter.com/mapsense" target="_blank">@mapsense</a>
-            </small>
-        </p>
-    </section>
+        <h1>Vector Tiles</h1>
+
+    <aside class="notes"></aside></section>
     <section>
         <h3>Table of Contents</h3>
         <nav id="presentable-toc" class="revealjs"></nav>
-    </section>
-</section>
+    <aside class="notes"></aside></section>
+<aside class="notes"></aside></section>
+
+
+<section>
+    <p>John Kelly</p>
+<canvas id='logo'></canvas>
+        <p>
+            San Francisco
+        <br>
+        <br><a href="http://twitter.com/MaptimeSF" target="_blank">@MaptimeSF</a>
+        <br><a href="http://twitter.com/jhnklly" target="_blank">@jhnklly</a>
+        <br><a href="http://twitter.com/mapsense" target="_blank">@mapsense</a>
+</p>
+<aside class="notes"></aside></section>
+
+
+<section>
+    <h3>Befriend-time!</h3>
+    <p class="fragment">Your name & geolocation & <span>what does "vector tile" mean to you?</span></p>
+    <!--
+    <ol>
+    <li class="fragment">Duckling Following A Cat Dressed As A Shark Riding A Roomba</li>
+    <li class="fragment">Squirrel Burying Walnut In Dog's Fur</li>
+    <li class="fragment">Basketballs</li>
+    <li class="fragment">Cats</li>
+    <li class="fragment">Stop pandering, this gif thing is totally played out.</li>
+    </ol>
+ -->
+<aside class="notes"></aside></section>
 
 <section>
     <h3>Follow along</h3>
@@ -209,26 +236,35 @@
     <p>Or get the code for examples:</p>
     <p><a href="https://github.com/jhnklly/vector_tiles_tutorial" target="_blank">https://github.com/jhnklly/vector_tiles_tutorial</a></p>
 -->
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3>What are vector tiles?</h3>
+
+    <aside class="notes">
+        This is what you came here to learn, right?
+    </aside>
 </section>
+
 
 <section>
     <h3>Vector-y!</h3>
     <ul>
-        <li>Dynamic styling</li>
-        <li>Interaction</li>
-        <li>Animation</li>
+        <li class="fragment">Not a static image/raster/bitmap</li>
+        <li class="fragment">Dynamic styling</li>
+        <li class="fragment">Interaction</li>
+        <li class="fragment">Animation</li>
+        <li class="fragment">Scale-<em>In</em>dependent</li>
+        <li class="fragment">Vertices + Attributes</li>
     </ul>
-</section>
+
+<aside class="notes">Vectors have</aside></section>
 
 <section>
     <p>
         <img src="img/InteractiveVectors.gif">
     </p>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3>Tile-y!</h3>
@@ -236,7 +272,7 @@
         http://a.tile.openstreetmap.org/0/0/0.png
         <br><img class="plain" src="http://a.tile.openstreetmap.org/0/0/0.png">
     </p>
-</section>
+<aside class="notes">tile: [zoomlevel, column, row]. Quad-tree indexed.</aside></section>
 
 <section>
     <p>
@@ -245,48 +281,49 @@
     </p>
     Times 70 billion.
 
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3>What We'll Make</h3>
     <iframe src="http://bl.ocks.org/erex78/raw/14e33abbd76575c96bd0/"></iframe>
-</section>
+<aside class="notes">Here's what we're goig to achieve today.</aside></section>
 
 
 <section>
     <!--
     <h3>Intentionally Blank!</h3>
     -->
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <!-- <h3>A bit about Mapsense</h3> -->
     <h3><a target="_blank" href="http://www.mapsense.co"><div class="logo"><img class="plain" src="img/mapsense.png"></div></a></h3>
 
-        <img class="snapshot" src="img/Team_Standup.JPG">
-        <img class="snapshot" src="img/TeamBikeOffsite.jpg">
+        <img class="fragment snapshot" src="img/Team_Standup.JPG">
+        <img class="fragment snapshot" src="img/TeamBikeOffsite.jpg">
         <!--
         <img src="img/TeamAtBar.jpg">
         -->
 
-        <br><img class="snapshot" src="img/amos.png">
-        <br><small>(Amos, head of recruiting.)</small>
+        <p class="fragment">
+            <img class="fragment snapshot" src="img/amos.png">
+            <small>(Amos, head of recruiting.)</small>
+        </p>
 
-</section>
+<aside class="notes"> We're a team of about a dozen mapmakers and programmers, who wanted a better way to map and interact with big datasets. We love the speed and beauty of D3.js, and asked "Why can't maps be like that?" </aside></section>
 
 <section>
     <h3>Mapsense.js</h3>
     <div class="maxwidth-narrow">
         <ul>
             <li>
-                <p>Open-source mapping library: <a target="_blank" href="https://github.com/mapsense/mapsense.js">https://github.com/mapsense/mapsense.js</a></p>
+                <p class="fragment">Open-source mapping library: <a target="_blank" href="https://github.com/mapsense/mapsense.js">https://github.com/mapsense/mapsense.js</a></p>
             </li>
             <li>
-                <p>Based on <a target="_blank" href="http://www.polymaps.org">polymaps.js</a> and <a target="_blank" href="http://www.d3s.org">D3.js</a></p>
+                <p class="fragment">Based on <a target="_blank" href="http://www.polymaps.org">polymaps.js</a> and <a target="_blank" href="http://www.d3s.org">D3.js</a></p>
             </li>
             <li>
-                <p>Unlimited basemap styles and possibilities.&nbsp;</p>
-                <p>
+                <p class="fragment">Unlimited basemap styles and possibilities.&nbsp;<br>
                     <img class="plain" src="https://developer.mapsense.co/images/vintage.jpg">
                     <img class="plain" src="https://developer.mapsense.co/images/tron.jpg">
                     <img class="plain" src="https://developer.mapsense.co/images/sketch.jpg">
@@ -303,33 +340,47 @@
             </li>
         </ul>
     </div>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3>Mapsense Data</h3>
-    <p>
         <ul>
             <li>
-                <p>Query, extract, and code with large public datasets,
+                <p class="fragment">Query, extract, and code with large public datasets,
                     <br>such as OpenStreetMap and US Demographics</p>
             </li>
             <li>
-                <p>Publish open&nbsp;data to the world</p>
+                <p class="fragment">Publish open&nbsp;data to the world
+
+                <img class="plain" src="img/mapsense_data.png">
+                </p>
             </li>
         </ul>
-        <br>
-            <img class="plain" src="img/mapsense_data.png">
-    </p>
-</section>
+<aside class="notes"></aside></section>
+
+
+<section>
+    <!-- <h3><a target="_blank" href="http://styler.mapsense.co/">styler.mapsense.co</a></h3>
+    <p>Great for designers</p>
+    <p><small>(And kids & grandparents too!)</small></p>
+     -->
+    <iframe src="http://styler.mapsense.co/"></iframe>
+<aside class="notes"></aside></section>
+
+
+<section>
+    <h3></h3>
+    <iframe src="http://jmk.divshot.io/osm-points#ice cream/gelato"></iframe>
+<aside class="notes"></aside></section>
 
 
 <section>
     <!--
     <h3>Intentionally Blank!</h3>
     -->
-</section>
+<aside class="notes"></aside></section>
 
-
+<!--
 <section>
     <h3>Back to Vectiles</h3>
 
@@ -348,8 +399,8 @@
         </ul>
     </p>
 
-</section>
-
+<aside class="notes"></aside></section>
+ -->
 <section>
     <h3>Vectile Geek Stuff</h3>
     <ul>
@@ -359,25 +410,41 @@
                 <li class="fragment">smaller size</li>
                 <li class="fragment">no gaps or overlaps when simplified</li>
             </ul>
+    </ul>
+
+<aside class="notes">
+1. topology: polygons, the biggest hog of coordinates: c'mon polygons, share your lines!
+</aside></section>
+
+<section>
+    <h3>Vectile Geek Stuff</h3>
+    <ul>
         <li class="fragment">quantization: like "snap-to-grid" or "coordinate precision"</li>
         <li class="fragment">delta-encoded: relative coordinates</li>
+
+    <code  class="fragment">[-122.41729335339737, 37.764892437675975] to [-122.4172505736351, 37.764881835836164] to [-122.41727739572524, 37.76488395620424]</code>
+    <hr class="fragment">
+    <code class="fragment">[-122417293μ, 37764892μ] to [-43, 11] to [17, 21]</code>
+
         <li class="fragment">protobuf’d: binary</li>
         <li class="fragment">zip’d: quicker transfer</li>
     </ul>
 
-</section>
+<aside class="notes">
+1. topology: polygons, the biggest hog of coordinates: c'mon polygons, share your lines!
+</aside></section>
 
 <section>
     <h3>Paws 4 Questions</h3>
     <img src="img/cat-gif-snow-wall.gif">
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3>Under the Hood</h3>
     <pre><code class="wrap">
 {"type":"Topology","q":[4096,4096],"transform":{"scale":[2.6822090148960476E-6,2.119827344163744E-6],"translate":[-122.43164062500001,37.779398571318765]},"srid":"4326","objects":{"land":{"type":"GeometryCollection","geometries":[{"id":0,"properties":{"minz":0},"type":"MultiPolygon","arcs":[[[1432]]]}]},"landuse":{"type":"GeometryCollection","geometries":[{"id":4705353,"properties":{"minz":13,"sub_layer":"park","leisure":"park","name":"Jefferson Square"},"type":"Polygon","arcs":[[0]]},{"id":6721233,"properties":{"minz":13,"sub_layer":"park","leisure":"pitch"},"type":"Polygon","arcs":[[1]]},{"id":7380715,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[2]]},{"id":7846397,"properties":{"name":"Cathedral of Saint Mary of the Assumption","building":"yes","minz":15,"sub_layer":"building","amenity":"place_of_worship"},"type":"Polygon","arcs":[[3,4,5,6,7]]},{"id":7915992,"properties":{"name":"Margaret S. Hayward Playground","minz":13,"sub_layer":"park","leisure":"park"},"type":"Polygon","arcs":[[8]]},{"id":8594947,"properties":{"building":"yes","minz":15,"sub_layer":"building","name":"State of California Building"},"type":"Polygon","arcs":[[9,1433,10,11,12],[13]]},{"id":8649879,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[14],[15]]},{"id":8700533,"properties":{"name":"Kintetsu Mall","building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[16,17,18]]},{"id":9037911,"properties":{"name":"War Memorial Veterans Building","building":"yes","minz":15,"sub_layer":"building","amenity":"theatre"},"type":"Polygon","arcs":[[19,1434,20]]},{"id":9054515,"properties":{"name":"Cathedral Hill Plaza","building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[21]]},{"id":9098966,"properties":{"name":"Safeway 0995","minz":15,"sub_layer":"building","building":"retail"},"type":"Polygon","arcs":[[22,1435]]},{"id":9167882,"properties":{"minz":15,"sub_layer":"building","building":"apartments"},"type":"Polygon","arcs":[[23,1436]]},{"id":9371343,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[24,1437,25]]},{"id":9820605,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[26]]},{"id":10005073,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[27,-7,28],[29],[30]]},{"id":10054102,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[31]]},{"id":10068970,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[32,33,34,35,36,37]]},{"id":10069784,"properties":{"name":"Miyako Mall","building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[38,39,40,41,42]]},{"id":10135953,"properties":{"name":"Kinokuniya Mall","building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[43,44,45,1438]]},{"id":10441598,"properties":{"name":"KRON
     </code></pre>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3>Consume Vectiles</h3>
@@ -387,7 +454,7 @@
 <li><a href="https://github.com/mapbox/mapbox-gl-js">Mapbox GL JS</a></li>
 <li>&hellip;</li>
 </ul>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3>Produce Vectiles</h3>
@@ -423,7 +490,7 @@
 -->
 
 </ul>
-</section>
+<aside class="notes"></aside></section>
 <!--
 https://github.com/mapbox/vector-tile-spec/wiki/Implementations
  -->
@@ -432,7 +499,7 @@ https://github.com/mapbox/vector-tile-spec/wiki/Implementations
     <!--
     <h3>Intentionally Blank!</h3>
     -->
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3>Developer Resources</h3>
@@ -444,24 +511,37 @@ https://github.com/mapbox/vector-tile-spec/wiki/Implementations
             <li><a target="_blank" href="https://developer.mapsense.co/examples/" target="_blank">Examples</a></li>
         </ul>
     </p>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3>Steal this code.</h3>
     <iframe src="https://developer.mapsense.co/examples/"></iframe>
-</section>
+<aside class="notes"></aside></section>
 
 
 <section>
     <!--
     <h3>Intentionally Blank!</h3>
     -->
-</section>
+<aside class="notes"></aside></section>
 
 
 <section>
     <h3>First Map: Hello World</h3>
-</section>
+
+    <div class="fragment">
+        Text Editors
+        <br>
+        <ul>
+            <li><a href="http://www.sublimetext.com/2" target="_blank">http://www.sublimetext.com/2</a></li>
+            <li><a href="http://brackets.io/" target="_blank">http://brackets.io/</a></li>
+            <li><a href="http://jsbin.com/?html,output" target="_blank">http://jsbin.com/</a></li>
+            <li>emacs, vim, atom, others</li>
+        </ul>
+    </div>
+
+
+<aside class="notes"></aside></section>
 
 <section>
     <h3>1. HTML boilerplate + libraries</h3>
@@ -482,7 +562,7 @@ https://github.com/mapbox/vector-tile-spec/wiki/Implementations
     &lt;/body&gt;
 &lt;/html&gt;
     </code></pre>
-</section>
+<aside class="notes"></aside></section>
 
 
 <section>
@@ -499,57 +579,60 @@ var map = mapsense.map("#myMap")
     </code></pre>
 
     <p class="fragment">
-        Gimme the keys! <a target="_blank" href="https://developer.mapsense.co/account/#signUp">developer.mapsense.co</a>!
+        Gimme the keys! <a target="_blank" href="https://developer.mapsense.co/account/#signUp">developer.mapsense.co</a>
     </p>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3>3. No Step 3</h3>
     <iframe src="http://bl.ocks.org/jhnklly/raw/3270644093d8fbebfcd6/#10.5/37.7745/-122.3401"></iframe>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3>End Slidetime</h3>
     <h3>Begin Maptime!</h3>
 
-    <div class="fragment">
+<!--     <div class="fragment">
         <a target="_blank" href="http://www.mapsense.co/hurricanes">http://www.mapsense.co/hurricanes</a>
     </div>
-
-    <div class="fragment">
+ -->
+    <p class="fragment">
+        Keys: <a target="_blank" href="https://developer.mapsense.co/account/#signUp">developer.mapsense.co</a>
+    </p>
+    <p class="fragment">
         <!-- <a target="_blank" href="http://bit.ly/vectormaptime">http://bl.ocks.org/erex78/14e33abbd76575c96bd0/</a> -->
-        <a target="_blank" href="http://bit.ly/vectormaptime">http://bit.ly/vectormaptime</a>
-    </div>
+        Codes: <a target="_blank" href="http://bit.ly/vectortime">http://bit.ly/vectortime</a>
+    </p>
 
-</section>
+<aside class="notes"></aside></section>
 
 <!--
 <section>
     <h3>Let's open our text editors &
  code together: <a target="_blank" href="http://www.mapsense.co/hurricanes">http://www.mapsense.co/hurricanes</a></h3>
-</section>
+<aside class="notes"></aside></section>
  -->
 <!--
 <section>
     <h3>Diving Deeper</h3>
     <p><a target="_blank" href="https://developer.mapsense.co/examples/">developer.mapsense.co/examples/</a></p>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3><a target="_blank" href="http://styler.mapsense.co/">styler.mapsense.co</a></h3>
     <p>Great for designers</p>
     <p><small>(And kids & grandparents too!)</small></p>
     <iframe src="http://styler.mapsense.co/"></iframe>
-</section>
+<aside class="notes"></aside></section>
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/e50c245eea328baca1c9">Put your own geojson on the map</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/e50c245eea328baca1c9"></iframe>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/raw/00ee03b071e938ce6cc0">Color by Data (Choropleth)</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/00ee03b071e938ce6cc0"></iframe>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3>Choropleth cartography standards, tip 1</h3>
@@ -558,7 +641,7 @@ var map = mapsense.map("#myMap")
         <br>
         <a target="_blank" href="http://uxblog.idvsolutions.com/2011/10/telling-truth.html/"><img src="img/MultipleClassificationsSkewed.jpg"></a>
     </p>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3>Choropleth cartography standards, tip 2</h3>
@@ -567,64 +650,64 @@ var map = mapsense.map("#myMap")
         <iframe src="http://colorbrewer2.org/"></iframe>
         <br>
     </p>
-</section>
+<aside class="notes"></aside></section>
 
 
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/a6b44908788263ef9165">Interact with Legend &rsaquo; Interact with Map</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/a6b44908788263ef9165"></iframe>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/bbeb63d06c8ed9f0ee77">Raster Too</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/bbeb63d06c8ed9f0ee77"></iframe>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/8ad03c1400b93251f5e2">Raster Two (+ Geocode)</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/8ad03c1400b93251f5e2"></iframe>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/7cde026bc1ef67280fec">Drag'n'Drop</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/7cde026bc1ef67280fec"></iframe>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/">Drag'n'Join</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/"></iframe>
-</section>
+<aside class="notes"></aside></section>
 
 
 
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/4bb87fe335cfba4e10c2">Fast Filter OSM</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/4bb87fe335cfba4e10c2"></iframe>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/343ae128d93c317ad31c">Use the D3.</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/343ae128d93c317ad31c"></iframe>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/be0ad69cbea40d842726">Leaflet tilelayer &amp; mapsense vector tiles</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/be0ad69cbea40d842726"></iframe>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/f1099c642a7a1ed9e71e">Toggle Layers</a></h3>
     <iframe src="http://bl.ocks.org/mapsense-examples/raw/f1099c642a7a1ed9e71e"></iframe>
-</section>
+<aside class="notes"></aside></section>
 
 
 <section>
     <h3></h3>
-</section>
+<aside class="notes"></aside></section>
 
 <section>
     <h3></h3>
-</section>
+<aside class="notes"></aside></section>
 
 -->
 
@@ -633,7 +716,7 @@ var map = mapsense.map("#myMap")
 <section>
     <h3>Here is the Gratuitous &amp; Requisite Cat GIF</h3>
     <img src="img/best_cat_gif_jump_light.gif">
-</section>
+<aside class="notes"></aside></section>
  -->
 </div>
 </div>
