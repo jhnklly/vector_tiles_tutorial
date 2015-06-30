@@ -248,7 +248,7 @@
 </section>
 
 <section>
-    <h3>What We're Going to Make</h3>
+    <h3>What We'll Make</h3>
     <iframe src="http://bl.ocks.org/erex78/raw/14e33abbd76575c96bd0/"></iframe>
 </section>
 
@@ -282,10 +282,24 @@
                 <p>Open-source mapping library: <a target="_blank" href="https://github.com/mapsense/mapsense.js">https://github.com/mapsense/mapsense.js</a></p>
             </li>
             <li>
-                <p>Unlimited basemap styles and possibilities.&nbsp;</p>
+                <p>Based on <a target="_blank" href="http://www.polymaps.org">polymaps.js</a> and <a target="_blank" href="http://www.d3s.org">D3.js</a></p>
             </li>
             <li>
-                <p>Based on <a target="_blank" href="http://www.polymaps.org">polymaps.js</a> and <a target="_blank" href="http://www.d3s.org">D3.js</a></p>
+                <p>Unlimited basemap styles and possibilities.&nbsp;</p>
+                <p>
+                    <img class="plain" src="https://developer.mapsense.co/images/vintage.jpg">
+                    <img class="plain" src="https://developer.mapsense.co/images/tron.jpg">
+                    <img class="plain" src="https://developer.mapsense.co/images/sketch.jpg">
+                    <br>
+                    <img class="plain" src="https://developer.mapsense.co/images/parchment.jpg">
+                    <img class="plain" src="https://developer.mapsense.co/images/blackprint.jpg">
+                    <img class="plain" src="https://developer.mapsense.co/images/grayscale.jpg">
+
+                    <!--
+                    <img class="plain" src="https://developer.mapsense.co/images/dark.jpg">
+                    <img class="plain" src="https://developer.mapsense.co/images/light.jpg">
+                     -->
+                </p>
             </li>
         </ul>
     </div>
@@ -303,6 +317,8 @@
                 <p>Publish open&nbsp;data to the world</p>
             </li>
         </ul>
+        <br>
+            <img class="plain" src="img/mapsense_data.png">
     </p>
 </section>
 
@@ -337,12 +353,16 @@
 <section>
     <h3>Vectile Geek Stuff</h3>
     <ul>
-        <li>topology?</li>
-        <li>quantization: like "snap-to-grid" or "coordinate precision"</li>
-        <li>delta-encoded: relative coordinates</li>
-        <li>protobuf’d</li>
-        <li>zip’d</li>
-        <li>sqlite with primary-key as tile</li>
+        <li class="fragment">topology
+            <ul>
+                <li class="fragment">shared boundaries</li>
+                <li class="fragment">smaller size</li>
+                <li class="fragment">no gaps or overlaps when simplified</li>
+            </ul>
+        <li class="fragment">quantization: like "snap-to-grid" or "coordinate precision"</li>
+        <li class="fragment">delta-encoded: relative coordinates</li>
+        <li class="fragment">protobuf’d: binary</li>
+        <li class="fragment">zip’d: quicker transfer</li>
     </ul>
 
 </section>
@@ -361,7 +381,7 @@
 
 <section>
     <h3>Consume Vectiles</h3>
-<ul>
+<ul class="fragment">
 <li><a href="https://github.com/mapsense/mapsense.js">mapsense.js</a></li>
 <li><a href="https://github.com/SpatialServer/Leaflet.MapboxVectorTile">Leaflet.MapboxVectorTile</a></li>
 <li><a href="https://github.com/mapbox/mapbox-gl-js">Mapbox GL JS</a></li>
@@ -371,7 +391,7 @@
 
 <section>
     <h3>Produce Vectiles</h3>
-<ul>
+<ul class="fragment">
 <li><a href="http://www.mapsense.co/plans/">Mapsense Analyst</a></li>
 <li><a href="https://github.com/mapbox/vector-tile-js">vector-tile-js</a></li>
 <li><a href="https://github.com/mapbox/mapnik-vector-tile">mapnik-vector-tile</a></li>
@@ -479,7 +499,7 @@ var map = mapsense.map("#myMap")
     </code></pre>
 
     <p class="fragment">
-        Let's get keys: <a target="_blank" href="https://developer.mapsense.co/account/#signUp">developer.mapsense.co</a>!
+        Gimme the keys! <a target="_blank" href="https://developer.mapsense.co/account/#signUp">developer.mapsense.co</a>!
     </p>
 </section>
 
@@ -494,6 +514,11 @@ var map = mapsense.map("#myMap")
 
     <div class="fragment">
         <a target="_blank" href="http://www.mapsense.co/hurricanes">http://www.mapsense.co/hurricanes</a>
+    </div>
+
+    <div class="fragment">
+        <!-- <a target="_blank" href="http://bit.ly/vectormaptime">http://bl.ocks.org/erex78/14e33abbd76575c96bd0/</a> -->
+        <a target="_blank" href="http://bit.ly/vectormaptime">http://bit.ly/vectormaptime</a>
     </div>
 
 </section>
