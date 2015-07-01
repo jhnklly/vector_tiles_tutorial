@@ -108,6 +108,10 @@
         width: 100%;
     }
 
+    .reveal code {
+        letter-spacing: 0.0em;
+    }
+
     .reveal pre code {
         display: block;
         padding: 0px;
@@ -197,13 +201,11 @@ maptimeLogo('logo', {
 
 
 <section>
-    <p>John Kelly</p>
 <canvas id='logo'></canvas>
-        <p>
-            San Francisco
-        <br>
-        <br><a href="http://twitter.com/MaptimeSF" target="_blank">@MaptimeSF</a>
-        <br><a href="http://twitter.com/jhnklly" target="_blank">@jhnklly</a>
+
+        <h3>San Francisco</h3>
+        <a href="http://twitter.com/MaptimeSF" target="_blank">@MaptimeSF</a>
+        <p>John Kelly | <a href="http://twitter.com/jhnklly" target="_blank">@jhnklly</a> | john@mapsense.co
         <br><a href="http://twitter.com/mapsense" target="_blank">@mapsense</a>
 </p>
 <aside class="notes"></aside></section>
@@ -550,7 +552,7 @@ https://github.com/mapbox/vector-tile-spec/wiki/Implementations
 <section>
     <h3>1. HTML boilerplate + libraries</h3>
 
-    <pre><code>&lt;!doctype html&gt;
+    <pre><code contenteditable spellcheck="false">&lt;!doctype html&gt;
 &lt;html&gt;
     &lt;head&gt;
         <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -558,6 +560,10 @@ https://github.com/mapbox/vector-tile-spec/wiki/Implementations
         <script src="https://developer.mapsense.co/mapsense.js" charset="utf-8"></script>
 
         <link  type="text/css"  href="https://developer.mapsense.co/mapsense.css" rel="stylesheet"/>
+
+        <style>
+            html, body { height: 100%; }
+        </style>
     &lt;/head&gt;
     &lt;body&gt;
         <script>
@@ -571,12 +577,12 @@ https://github.com/mapbox/vector-tile-spec/wiki/Implementations
 
 <section>
     <h3>2. Add a Mapsense basemap</h3>
-    <pre><code contenteditable spellcheck="false">
+    <pre><code class="javascript" contenteditable spellcheck="false">
 d3.select("body").append("div")
     .attr("id","myMap")
     .attr("style","height: 100%;");
 
-var myKey = "";
+var myKey = /* https://developer.mapsense.co/account/#signUp  */;
 
 var map = mapsense.map("#myMap")
     .add(mapsense.basemap().apiKey(myKey));
@@ -610,111 +616,41 @@ var map = mapsense.map("#myMap")
 
 <aside class="notes"></aside></section>
 
-<!--
-<section>
-    <h3>Let's open our text editors &
- code together: <a target="_blank" href="http://www.mapsense.co/hurricanes">http://www.mapsense.co/hurricanes</a></h3>
-<aside class="notes"></aside></section>
- -->
-<!--
-<section>
-    <h3>Diving Deeper</h3>
-    <p><a target="_blank" href="https://developer.mapsense.co/examples/">developer.mapsense.co/examples/</a></p>
-<aside class="notes"></aside></section>
 
 <section>
-    <h3><a target="_blank" href="http://styler.mapsense.co/">styler.mapsense.co</a></h3>
-    <p>Great for designers</p>
-    <p><small>(And kids & grandparents too!)</small></p>
-    <iframe src="http://styler.mapsense.co/"></iframe>
-<aside class="notes"></aside></section>
-<section>
-    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/e50c245eea328baca1c9">Put your own geojson on the map</a></h3>
-    <iframe src="http://bl.ocks.org/mapsense-examples/e50c245eea328baca1c9"></iframe>
-<aside class="notes"></aside></section>
+</section>
 
 <section>
-    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/raw/00ee03b071e938ce6cc0">Color by Data (Choropleth)</a></h3>
-    <iframe src="http://bl.ocks.org/mapsense-examples/raw/00ee03b071e938ce6cc0"></iframe>
-<aside class="notes"></aside></section>
+</section>
 
 <section>
-    <h3>Choropleth cartography standards, tip 1</h3>
-    <p>
-        <a target="_blank" href="http://uxblog.idvsolutions.com/2011/10/telling-truth.html">Telling the Truth</a>
-        <br>
-        <a target="_blank" href="http://uxblog.idvsolutions.com/2011/10/telling-truth.html/"><img src="img/MultipleClassificationsSkewed.jpg"></a>
-    </p>
-<aside class="notes"></aside></section>
-
-<section>
-    <h3>Choropleth cartography standards, tip 2</h3>
-    <p>
-        <a target="_blank" href="http://colorbrewer2.org/">colorbrewer</a>
-        <iframe src="http://colorbrewer2.org/"></iframe>
-        <br>
-    </p>
-<aside class="notes"></aside></section>
-
-
-<section>
-    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/a6b44908788263ef9165">Interact with Legend &rsaquo; Interact with Map</a></h3>
-    <iframe src="http://bl.ocks.org/mapsense-examples/raw/a6b44908788263ef9165"></iframe>
-<aside class="notes"></aside></section>
-
-<section>
-    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/bbeb63d06c8ed9f0ee77">Raster Too</a></h3>
-    <iframe src="http://bl.ocks.org/mapsense-examples/raw/bbeb63d06c8ed9f0ee77"></iframe>
-<aside class="notes"></aside></section>
-
-<section>
-    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/8ad03c1400b93251f5e2">Raster Two (+ Geocode)</a></h3>
-    <iframe src="http://bl.ocks.org/mapsense-examples/raw/8ad03c1400b93251f5e2"></iframe>
-<aside class="notes"></aside></section>
-
-<section>
-    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/7cde026bc1ef67280fec">Drag'n'Drop</a></h3>
-    <iframe src="http://bl.ocks.org/mapsense-examples/raw/7cde026bc1ef67280fec"></iframe>
-<aside class="notes"></aside></section>
-
-<section>
-    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/">Drag'n'Join</a></h3>
-    <iframe src="http://bl.ocks.org/mapsense-examples/raw/"></iframe>
-<aside class="notes"></aside></section>
-
-
-
-<section>
-    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/4bb87fe335cfba4e10c2">Fast Filter OSM</a></h3>
-    <iframe src="http://bl.ocks.org/mapsense-examples/raw/4bb87fe335cfba4e10c2"></iframe>
-<aside class="notes"></aside></section>
-
-<section>
-    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/343ae128d93c317ad31c">Use the D3.</a></h3>
-    <iframe src="http://bl.ocks.org/mapsense-examples/raw/343ae128d93c317ad31c"></iframe>
-<aside class="notes"></aside></section>
-
-<section>
-    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/be0ad69cbea40d842726">Leaflet tilelayer &amp; mapsense vector tiles</a></h3>
-    <iframe src="http://bl.ocks.org/mapsense-examples/raw/be0ad69cbea40d842726"></iframe>
-<aside class="notes"></aside></section>
-
-<section>
-    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/f1099c642a7a1ed9e71e">Toggle Layers</a></h3>
-    <iframe src="http://bl.ocks.org/mapsense-examples/raw/f1099c642a7a1ed9e71e"></iframe>
-<aside class="notes"></aside></section>
+    <h3>Ideatime!</h3>
+        <ol class="fragment">
+            <li>Put Null Island on the map?</li>
+            <li>Make an SF 311 browser?</li>
+            <li><a target="_blank" href="http://bl.ocks.org/mapsense-examples/7cde026bc1ef67280fec">Drag & drop .csv to map?</a></li>
+            <li>Natural Earth countries painted with their flag?</li>
+            <li>Others?</li>
+        </ol>
+</section>
 
 
 <section>
     <h3></h3>
-<aside class="notes"></aside></section>
+    <p>
+        <a href="https://jhnklly.github.io/vector_tiles_tutorial" target="_blank">https://jhnklly.github.io/vector_tiles_tutorial</a>
+    </p>
+     <p>
+            <small>
 
-<section>
-    <h3></h3>
-<aside class="notes"></aside></section>
-
--->
-
+                <br>
+                <br><a href="http://twitter.com/MaptimeSF" target="_blank">@MaptimeSF</a>
+                <br><a href="http://twitter.com/mapsense" target="_blank">@mapsense</a>
+                <br><a href="http://twitter.com/jhnklly" target="_blank">@jhnklly</a>
+                <br>john@mapsense.co
+            </small>
+        </p>
+</section>
 
 <!--
 <section>
