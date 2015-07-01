@@ -48,6 +48,7 @@
 
     img.snapshot {
         border: 0 !important;
+        padding: 0 !important;
         box-shadow: 0 !important;
         background: transparent !important;
         height: 220px;
@@ -84,6 +85,10 @@
 */
 
     /* jmk overrides */
+
+    .reveal .inline {
+        display: inline-block;
+    }
 
     section.liveCoding {
         height: 100%;
@@ -212,17 +217,27 @@ maptimeLogo('logo', {
 
 
 <section>
-    <h3>Befriend-time!</h3>
-    <p class="fragment">Your name & geolocation & <span>what does "vector tile" mean to you?</span></p>
-    <!--
-    <ol>
-    <li class="fragment">Duckling Following A Cat Dressed As A Shark Riding A Roomba</li>
-    <li class="fragment">Squirrel Burying Walnut In Dog's Fur</li>
-    <li class="fragment">Basketballs</li>
-    <li class="fragment">Cats</li>
-    <li class="fragment">Stop pandering, this gif thing is totally played out.</li>
-    </ol>
- -->
+    <h3>Meettime!</h3>
+    <p class="fragment">Your name & geolocation & <span>what does &ldquo;vector tile&rdquo; mean to you?</span>
+    <span class="fragment"> or (B) Your favorite gif?</span></p>
+
+</section>
+
+<section>
+    <div class="inline"><small>1. Cat Dressed As A Shark Riding A Roomba Following a</small><br>
+        <img class="snapshot" src="img/cat-shark-duck-roomba.gif" />
+    </div>
+
+    <div class="fragment inline"><small>2. Squirrel Burying Walnut In Dog's Fur</small><br>
+        <img class="snapshot" src="img/squirreldog.gif" />
+    </div>
+
+    <div class="fragment inline"><small>3. Steph Curry highlights</small><br>
+        <img class="snapshot" src="img/stephcurry.gif" />
+    </div>
+
+    <div class="fragment inline"><small>4. Stop pandering, this gif thing is totally played out.</small></div>
+
 <aside class="notes"></aside></section>
 
 <section>
@@ -240,6 +255,16 @@ maptimeLogo('logo', {
     <p><a href="https://github.com/jhnklly/vector_tiles_tutorial" target="_blank">https://github.com/jhnklly/vector_tiles_tutorial</a></p>
 -->
 <aside class="notes"></aside></section>
+
+<section>
+    <h3>Goaltime!</h3>
+    <ul>
+        <li class="fragment"><strong>Learn</strong>: What can vector tiles do for me?</li>
+        <li class="fragment"><strong>Make</strong>: Code a vectile web map.</li>
+        <li class="fragment"><strong>Visualize</strong>: Make it data-driven.</li>
+    </ul>
+
+</section>
 
 <section>
     <h3>What are vector tiles?</h3>
@@ -599,13 +624,20 @@ var map = mapsense.map("#myMap")
 <aside class="notes"></aside></section>
 
 <section>
-    <h3>End Slidetime</h3>
-    <h3>Begin Maptime!</h3>
+    <h3>End Slidetime. Begin Maptime!</h3>
 
 <!--     <div class="fragment">
         <a target="_blank" href="http://www.mapsense.co/hurricanes">http://www.mapsense.co/hurricanes</a>
     </div>
  -->
+    <p class="fragment">
+        Next:
+        <ol>
+            <li class="fragment">Add custom data to our basemap.</li>
+            <li class="fragment">Change the symbolization to reflect data values.</li>
+            <li class="fragment">Empower the end-user to control the visualization.</li>
+        </ol>
+    </p>
     <p class="fragment">
         Keys: <a target="_blank" href="https://developer.mapsense.co/account/#signUp">developer.mapsense.co</a>
     </p>
