@@ -24,7 +24,7 @@ body {
 
 .reveal {
   font-family: 'Quicksand', sans-serif;
-  letter-spacing: -0.08em;
+  letter-spacing: -0.02em;
   font-size: 48px;
   /*
   font-size: 36px;
@@ -55,7 +55,7 @@ body {
   font-family: Quicksand, 'League Gothic', sans-serif;
   font-weight: normal;
   line-height: 1.0;
-  letter-spacing: -0.08em;
+  letter-spacing: -0.02em;
   /*
   text-transform: uppercase;
   */
